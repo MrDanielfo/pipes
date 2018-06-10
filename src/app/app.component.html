@@ -1,20 +1,149 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+  <h1 class="text-center mt-0 mb-4 py-3 bg-dark text-light">Pipes</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Variable</th>
+        <th scope="col">Pipe</th>
+        <th scope="col">Producto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th> {{ nombre }} </th>
+        <td> uppercase </td>
+        <td> {{ nombre | uppercase }} </td>
+      </tr>
+      <tr>
+        <th> {{ nombre }} </th>
+        <td> lowercase </td>
+        <td> {{ nombre | lowercase }} </td>
+      </tr>
+      <tr>
+        <th> {{ nombre }} </th>
+        <td> slice:2 </td>
+        <td> {{ nombre | slice:2 }} </td>
+      </tr>
+      <tr>
+        <th> {{ nombre }} </th>
+        <td> slice:0:3</td>
+        <td> {{ nombre | slice:0:3 }} </td>
+      </tr>
+      <tr>
+        <th> {{ arreglo }} </th>
+        <td> slice:1:4</td>
+        <td> {{ arreglo | slice:1:4 }} </td>
+      </tr>
+      <tr>
+        <th> {{ PI }} </th>
+        <td> number </td>
+        <td> {{ PI | number:'3.0-0' }} </td>
+      </tr>
+      <tr>
+        <th> {{ PI }} </th>
+        <td> number </td>
+        <td> {{ PI | number:'1.0-2' }} </td>
+      </tr>
+      <tr>
+        <th> {{ a }} </th>
+        <td> percent </td>
+        <td> {{ a | percent }} </td>
+      </tr>
+      <tr>
+        <th> {{ a }} </th>
+        <td> percent: '2.1-1' </td>
+        <td> {{ a | percent:'2.3-3' }} </td>
+      </tr>
+      <tr>
+        <th> {{ miSalario }} </th>
+        <td> currency </td>
+        <td> {{ miSalario | currency }} </td>
+      </tr>
+      <tr>
+        <th> {{ miSalario }} </th>
+        <td> currency: México </td>
+        <td> {{ miSalario | currency: 'MXN' }} </td>
+      </tr>
+      <tr>
+        <th> {{ miSalario }} </th>
+        <td> currency: México:true </td>
+        <td> {{ miSalario | currency: 'MXN':true:'4.0-0' }} </td>
+      </tr>
+      <tr>
+        <th> {{ miSalario }} </th>
+        <td> number: '.2-2' </td>
+        <td> {{ miSalario | number:'.2-2' }}</td>
+      </tr>
+      <tr>
+        <th> {{ valorPromesa }} </th>
+        <td> async </td>
+        <td> {{ valorPromesa | async }}</td>
+      </tr>
+      <tr>
+        <th> {{ fecha }} </th>
+        <td> date </td>
+        <td> {{ fecha | date }}</td>
+      </tr>
+      <tr>
+        <th> {{ fecha }} </th>
+        <td> date </td>
+        <td> {{ fecha | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <th> {{ fecha }} </th>
+        <td> date </td>
+        <td> {{ fecha | date:'MMMM - dd' }}</td>
+      </tr>
+      <tr>
+        <th> {{ fecha }} </th>
+        <td> date </td>
+        <td> {{ fecha | date:'MMMM - dd' }}</td>
+      </tr>
+      <tr>
+        <th> {{ nombreDos }} </th>
+        <td> capitalizado </td>
+        <td> {{ nombreDos | capitalizado }}</td>
+      </tr>
+      <tr>
+        <th> {{ nombreDos }} </th>
+        <td> capitalizado </td>
+        <td> {{ nombreDos | capitalizado:false }}</td>
+      </tr>
+      <tr>
+        <th> {{ nombre }} </th>
+        <td>
+          password: {{ activar }}
+          <br>
+          <button
+            (click)="activar = !activar"
+            type="button" class="btn btn-outline-dark">
+            Activar / Desactivar
+          </button>
+
+        </td>
+        <td> {{ nombre | contrasena:activar }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Slice</h4>
+  <ul>
+    <li *ngFor="let item of arreglo | slice:5:10">{{item}}</li>
+  </ul>
+
+  <h4>jSON</h4>
+  <br>
+  <pre>
+    {{ futbolista | json }}
+  </pre>
+
+  <h4>YouTube</h4>
+  <div>
+    <iframe width="560" height="315" [src]="video | domseguro:'https://www.youtube.com/embed/' " frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+
+
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
 
